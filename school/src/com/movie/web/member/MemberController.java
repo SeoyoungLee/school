@@ -16,7 +16,7 @@ public class MemberController {
 			case 2: 
 				System.out.println("아이디와 비번을 입력하세요.");
 				break;
-			case 3: 
+			case 3:
 				System.out.println("아이디 입력");
 				System.out.println(service.detail(s.next()));
 				break;

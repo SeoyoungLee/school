@@ -23,6 +23,6 @@ SELECT * FROM Member;
 SELECT * FROM Member
 WHERE id = 'kim';
 
-;
+
 
 
