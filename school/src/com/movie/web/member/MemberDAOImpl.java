@@ -35,8 +35,9 @@ public class MemberDAOImpl implements MemberDAO{
 			Class.forName(Constants.ORACLE_DRIVER);
 			conn = DriverManager.getConnection(Constants.ORACLE_URL,Constants.ORACLE_ID,Constants.ORACLE_PASSWORD);
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM Member WHERE id ='"+id+"'");
+			rs = stmt.executeQuery("SELECT * FROM GradeMember WHERE id ='"+id+"'");
 			while (rs.next()) {
+				
 				temp.setId(rs.getString("id"));
 				temp.setName(rs.getString("name"));
 				temp.setPassword(rs.getString("password"));

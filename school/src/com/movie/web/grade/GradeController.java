@@ -1,6 +1,7 @@
 package com.movie.web.grade;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 public class GradeController {
@@ -21,8 +22,7 @@ public class GradeController {
 			case 2:
 				System.out.println("수정하려는 성적표의 학번, 자바, SQL, JSP, 스프링 점수를 입력하세요.");
 				int hak = scanner.nextInt();
-				String name = service.getGradeByHak(hak).getId();
-				System.out.println(service.update(new GradeBean(hak, name, scanner.nextInt(), scanner.nextInt(),scanner.nextInt(), scanner.nextInt())));
+				
 				
 				break;
 			case 3:
@@ -31,18 +31,16 @@ public class GradeController {
 				break;
 			case 4:
 				System.out.println(service.getList());
-
 				break;
 			case 5:
 				System.out.println("이름을 입력해주세요.");
-				ArrayList<GradeBean> tempList = service.getGrades(scanner.next());
-				System.out.println((tempList.size() == 0) ? "조회하려는 이름이 없습니다." : tempList.toString());
+				System.out.println(service.getGrades(scanner.next()));
+				
 				break;
 			case 6:
 				System.out.println("학번을 입력해주세요.");
-				GradeBean temp = service.getGradeByHak(scanner.nextInt());
-
-				System.out.println((temp.getId() == null) ? "조회하려는 학번이 없습니다." : temp.toString());
+				//Map<String,Object> map = service.getGradeByHak(scanner.nextInt());
+				System.out.println(service.getGradeByHak(scanner.nextInt()));
 				break;
 			case 7:
 				System.out.println(service.getCount());

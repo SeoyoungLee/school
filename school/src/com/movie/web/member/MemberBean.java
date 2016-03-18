@@ -1,5 +1,7 @@
 package com.movie.web.member;
 
+import com.movie.web.grade.GradeBean;
+
 public class MemberBean {
 	private String id, password, name, addr;
 	private int birth; // 생년월일은 800101 처럼 숫자만 입력
