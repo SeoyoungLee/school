@@ -1,4 +1,4 @@
-package com.movie.web.grade;
+package com.movie.web.global;
 
 import java.io.IOException;
 
@@ -9,18 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.movie.web.global.Command;
-import com.movie.web.global.CommandFactory;
-
-@WebServlet("/grade/my_grade.do")
-public class GradeController extends HttpServlet {
+@WebServlet("/global/main.do")
+public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
      
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Command command = new Command();
-		GradeService service = new GradeServiceImpl();
-		GradeBean grade = new GradeBean();
 		String path = request.getServletPath();
 		String temp = path.split("/")[2];
 		
@@ -29,10 +24,9 @@ public class GradeController extends HttpServlet {
 		command = CommandFactory.createCommand(directory, action);
 		
 		switch (action) {
-		case "my_grade":
-			
-			break;
-					
+		case "main":
+			command = CommandFactory.createCommand(directory, "main");
+		
 		default:
 			command = CommandFactory.createCommand(directory, action);
 			break;
@@ -46,6 +40,5 @@ public class GradeController extends HttpServlet {
 
 
 	}
+
 }
-
-

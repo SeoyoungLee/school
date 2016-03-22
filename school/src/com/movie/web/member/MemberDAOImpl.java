@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import com.movie.web.global.Constants;
+import com.movie.web.global.DatabaseFactory;
+import com.movie.web.global.Vendor;
 
 public class MemberDAOImpl implements MemberDAO{
 	private Connection conn; //오라클 연결 객체
@@ -14,6 +16,10 @@ public class MemberDAOImpl implements MemberDAO{
 	private PreparedStatement pstmt; //쿼리 전송 객체2
 	private ResultSet rs; //리턴값 회수 객체
 	
+	public MemberDAOImpl() {
+		conn = DatabaseFactory.getDatabase(Vendor.ORACLE, Constants.ID, Constants.PASSWORD).getConnection();
+		
+	}
 	@Override
 	public void insert(MemberBean member) {
 		// TODO Auto-generated method stub
@@ -21,9 +27,32 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	@Override
-	public void selectById(String id, String password) {
-		// TODO Auto-generated method stub
+	public MemberBean selectById(String id, String password) {
+		MemberBean temp = new MemberBean();
 		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM GradeMember WHERE id ='"+id+"'and password = '"+password+"'");
+			while (rs.next()) {
+				
+				temp.setId(rs.getString("id"));
+				temp.setName(rs.getString("name"));
+				temp.setPassword(rs.getString("password"));
+				temp.setAddr(rs.getString("addr"));
+				temp.setBirth(rs.getInt("birth"));
+			}
+		} catch (Exception e) {
+			System.out.println("selectMember()에서 에러 발생");
+			e.printStackTrace();
+		}
+		System.out.println("쿼리 조회 결과 :"+temp.getAddr());
+		if (temp.getAddr() != null) {
+			System.out.println("쿼리 조회 결과 :"+temp.getAddr());
+			return temp;
+		} else {
+			System.out.println("쿼리 조회 결과 : null ");
+			return null;
+		}
 	}
 
 	@Override
@@ -32,8 +61,6 @@ public class MemberDAOImpl implements MemberDAO{
 		MemberBean temp = new MemberBean();
 		
 		try {
-			Class.forName(Constants.ORACLE_DRIVER);
-			conn = DriverManager.getConnection(Constants.ORACLE_URL,Constants.ORACLE_ID,Constants.ORACLE_PASSWORD);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM GradeMember WHERE id ='"+id+"'");
 			while (rs.next()) {
@@ -49,7 +76,6 @@ public class MemberDAOImpl implements MemberDAO{
 			e.printStackTrace();
 		}
 		
-		System.out.println("쿼리 조회 결과 : " + temp.getAddr());
 		return temp;
 		
 	}
@@ -64,6 +90,26 @@ public class MemberDAOImpl implements MemberDAO{
 	public void delete(String id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean isMember(String id) {
+		MemberBean temp = new MemberBean();
+		boolean member = false;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT id FROM GradeMember WHERE id ='"+id+"'");
+			while (rs.next()) {
+				member =true;
+			
+			}
+			
+		} catch (Exception e) {
+			System.out.println("isMember()에서 에러 발생");
+			e.printStackTrace();
+		}
+		
+		return member;
 	}
 
 }
