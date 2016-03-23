@@ -1,38 +1,42 @@
 --시퀀스 설정
-CREATE SEQUENCE hak
-start WITH 20160001
+CREATE SEQUENCE score_seq
+start WITH 1
 increment BY 1
-maxvalue 20169999
 
-DROP SEQUENCE hak;
+DROP SEQUENCE scoreSeq;
 
-DROP TABLE Grade; CASCADE;
+DROP TABLE Grade CASCADE CONSTRAINT;
 CREATE TABLE Grade(
+	score_seq NUMBER PRIMARY KEY,
 	id VARCHAR2(30) NOT NULL,
-	hak NUMBER PRIMARY KEY,
 	java NUMBER NOT NULL,
 	sql NUMBER NOT NULL,
 	jsp NUMBER NOT NULL,
 	spring NUMBER NOT NULL
 );
 
-INSERT INTO Grade(id, hak, java, sql, jsp, spring)
-VALUES('hong', hak.NEXTVAL, 70,70,70,70);
+ALTER TABLE Grade RENAME hak TO examSeq;
 
-INSERT INTO Grade(id, hak, java, sql, jsp, spring)
-VALUES('kim', hak.NEXTVAL, 80,80,80,80);
+INSERT INTO Grade(score_seq, id, java, sql, jsp, spring)
+VALUES( score_seq.NEXTVAL,'hong', 70,70,70,70);
 
-INSERT INTO Grade(id, hak, java, sql, jsp, spring)
-VALUES('lee', hak.NEXTVAL, 90,90,90,90);
+INSERT INTO Grade(score_seq, id, java, sql, jsp, spring)
+VALUES( score_seq.NEXTVAL, 'kim',80,80,80,80);
 
-INSERT INTO Grade(id, hak, java, sql, jsp, spring)
-VALUES('han', hak.NEXTVAL, 85,85,85,85);
+INSERT INTO Grade(score_seq, id, java, sql, jsp, spring)
+VALUES( score_seq.NEXTVAL, 'lee',90,90,90,90);
 
-INSERT INTO Grade(id, hak, java, sql, jsp, spring)
-VALUES('song', hak.NEXTVAL, 95,95,95,95);
+INSERT INTO Grade(score_seq, id, java, sql, jsp, spring)
+VALUES( score_seq.NEXTVAL,'han', 85,85,85,85);
 
-INSERT INTO Grade(id, hak, java, sql, jsp, spring)
-VALUES('kim2', hak.NEXTVAL, 50,50,50,50);
+INSERT INTO Grade(score_seq, id, java, sql, jsp, spring)
+VALUES( score_seq.NEXTVAL,'song', 95,95,95,95);
+
+INSERT INTO Grade(score_seq, id, java, sql, jsp, spring)
+VALUES( score_seq.NEXTVAL, 'kim2',50,50,50,50);
+
+INSERT INTO Grade(score_seq, id, java, sql, jsp, spring)
+VALUES( score_seq.NEXTVAL, 'hong',65,65,65,65);
 
 SELECT * FROM Grade;
 

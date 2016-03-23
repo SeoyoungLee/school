@@ -5,18 +5,25 @@ import java.util.HashMap;
 import oracle.net.aso.f;
 
 public class MemberServiceImpl implements MemberService {
-
+	private static MemberService instance = new MemberServiceImpl();
 	HashMap<String, MemberBean> map;
-	MemberDAO dao = new MemberDAOImpl();
+	MemberDAO dao = MemberDAOImpl.getInstance();
+
+	
+	public static MemberService getInstance() {
+		return instance;
+	}
 
 	public MemberServiceImpl() {
 		map = new HashMap<String, MemberBean>();
 	}
 
 	@Override
-	public void join(MemberBean member) {
+	public int join(MemberBean member) {
 		// 회원가입
-		map.put(member.getId(), member);
+		return dao.insert(member);
+		
+		
 
 	}
 
@@ -47,14 +54,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void update() {
+	public int update(MemberBean member) {
 		// 수정
+		return dao.update(member);
 
 	}
 
 	@Override
-	public void remove(String id) {
+	public int remove(String id) {
 		// 삭제
+		return dao.delete(id);
 
 	}
 

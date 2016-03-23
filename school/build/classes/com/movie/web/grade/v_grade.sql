@@ -1,8 +1,8 @@
 CREATE OR REPLACE VIEW GradeMember
 AS
 SELECT 
+	g.score_seq AS score_seq,
 	g.id AS id,
-	g.hak AS hak,
 	g.java AS java,
 	g.sql AS sql,
 	g.jsp AS jsp,
@@ -12,7 +12,7 @@ SELECT
 	m.addr AS addr,
 	m.birth AS birth
 FROM Member m, Grade g
-WHERE m.id = g.id
+WHERE m.id = g.id;
 
 SELECT * FROM GradeMember;
 

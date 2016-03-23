@@ -18,14 +18,17 @@ INSERT INTO Member(id, name, password, addr, birth)
 VALUES('song', '송아지', '1', '부산', 850426);
 INSERT INTO Member(id, name, password, addr, birth)
 VALUES('kim2', '김유신', '1', 'LA', 910125);
+INSERT INTO Member(id, name, password, addr, birth)
+VALUES('you', '유아인', '1', '강릉', 880505);
 
 SELECT * FROM Member;
 SELECT * FROM Member
-WHERE id = 'kim';
+WHERE id = 'you';
 
 SELECT * FROM Member
 WHERE id = 'kim' and password='1';
 
 DROP TABLE Member; CASCADE CONSTRAINT;
+DELETE FROM member WHERE id='kim3';
 
-
+update member set password = '2' , addr = '도쿄' where id = 'you';

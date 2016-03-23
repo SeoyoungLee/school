@@ -20,7 +20,7 @@ public interface GradeService {
 	public ArrayList<GradeMemberBean> getList();
 	
 	//R :성적표 조회(학번)
-	public GradeMemberBean getGradeByHak(int hak);
+	public GradeMemberBean getGradeById(String id);
 
 	//R :성적표 조회(이름)
 	public ArrayList<GradeMemberBean> getGrades(String name);

@@ -7,19 +7,19 @@
 	</tr>
 	<tr>
 		<td><h3>java</h3></td>
-		<td>${score.java}</td>
+		<td>${grade.java}</td>
 	</tr>
 	<tr>
 		<td><h3>sql</h3></td>
-		<td>${score.sql}</td>
+		<td>${grade.sql}</td>
 	</tr>
 	<tr>
 		<td><h3>jsp</h3></td>
-		<td>${score.jsp}</td>
+		<td>${grade.jsp}</td>
 	</tr>
 	<tr>
 		<td><h3>spring</h3></td>
-		<td>${score.spring}</td>
+		<td>${grade.spring}</td>
 	</tr>
 </table>
 

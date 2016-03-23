@@ -7,7 +7,13 @@ import java.util.Vector;
 public class GradeServiceImpl implements GradeService {
 	// 멤버 필드
 	ArrayList<GradeBean> gradeList;
-	GradeDAO dao = new GradeDAOImpl();
+	GradeDAO dao =GradeDAOImpl.getInstance();
+	private static GradeService instance = new GradeServiceImpl();
+	
+	public static GradeService getInstance() {
+		return instance;
+	}
+
 	public GradeServiceImpl() {
 		gradeList = new ArrayList<GradeBean>();
 	}
@@ -34,10 +40,10 @@ public class GradeServiceImpl implements GradeService {
 	}
 
 	@Override
-	public GradeMemberBean getGradeByHak(int hak) {
-		// R :성적표 조회(학번)
+	public GradeMemberBean getGradeById(String id) {
+		// R :성적표 조회(아이디)
 		
-		return dao.selectGradeByHak(hak);
+		return dao.selectGradeById(id);
 	}
 
 	@Override
