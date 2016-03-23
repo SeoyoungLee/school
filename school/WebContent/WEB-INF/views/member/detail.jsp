@@ -39,11 +39,16 @@
 						</div>
 					</div>
 					<div class="input_button text-center">
+						
+						
+						<input type="submit" formaction="${context}/grade/my_grade.do" class="btn btn-primary" value="내 성적 보기" />
 						<input type="submit" id="updateButton" class="btn btn-primary" value ="수정 폼으로 이동"/>
+						<input type="submit" formaction="${context}/member/delete.do" class="btn btn-primary" value="삭제" />
 						<input type="hidden" id="id" name="id" class="btn btn-primary" value ="${member.id}"/>
+						
 					</div>
 						
 				</fieldset>
 			</form>
+			</div>
 		</div>
-	</div>

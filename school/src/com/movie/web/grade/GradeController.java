@@ -15,12 +15,13 @@ import com.movie.web.global.CommandFactory;
 @WebServlet("/grade/my_grade.do")
 public class GradeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-     
+	GradeService service = GradeServiceImpl.getInstance();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Command command = new Command();
-		GradeService service = new GradeServiceImpl();
-		GradeBean grade = new GradeBean();
+		
+		GradeMemberBean grade = new GradeMemberBean();
+		
 		String path = request.getServletPath();
 		String temp = path.split("/")[2];
 		
@@ -30,7 +31,8 @@ public class GradeController extends HttpServlet {
 		
 		switch (action) {
 		case "my_grade":
-			
+			request.setAttribute("grade",service.getGradeById(request.getParameter("id")));
+			command = CommandFactory.createCommand(directory, action);
 			break;
 					
 		default:

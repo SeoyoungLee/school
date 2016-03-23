@@ -2,7 +2,7 @@ package com.movie.web.grade;
 
 public class GradeMemberBean {
 	private String id, password, name, addr;
-	private int hak, java, sql, jsp, spring, birth;
+	private int score_seq, java, sql, jsp, spring, birth;
 	public String getId() {
 		return id;
 	}
@@ -27,11 +27,12 @@ public class GradeMemberBean {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
-	public int getHak() {
-		return hak;
+	
+	public int getScore_seq() {
+		return score_seq;
 	}
-	public void setHak(int hak) {
-		this.hak = hak;
+	public void setScore_seq(int score_seq) {
+		this.score_seq = score_seq;
 	}
 	public int getJava() {
 		return java;
@@ -65,8 +66,8 @@ public class GradeMemberBean {
 	}
 	@Override
 	public String toString() {
-		return "성적표 [id=" + id + ", password=" + password + ", name=" + name + ", addr=" + addr + ", hak="
-				+ hak + ", java=" + java + ", sql=" + sql + ", jsp=" + jsp + ", spring=" + spring + ", birth=" + birth
+		return "성적표 [id=" + id + ", password=" + password + ", name=" + name + ", addr=" + addr + ", score_seq="
+				+ score_seq + ", java=" + java + ", sql=" + sql + ", jsp=" + jsp + ", spring=" + spring + ", birth=" + birth
 				+ "]\n";
 	}
 	
