@@ -23,7 +23,7 @@
  	JSP가 정상적으로 실행되는 응답코드로는 200이 전송
  	-->
  	<div>
- 	<img src="${context}/img/error/err404.jpg" alt="404에러 발생" />
+ 	<img src="${context}/resources/img/error/err404.jpg" alt="404에러 발생" />
  	</div>
 
 </body>

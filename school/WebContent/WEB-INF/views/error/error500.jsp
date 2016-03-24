@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div>
- 	<img src="${context}/img/error/err500.jpg" alt="500에러 발생" />
+ 	<img src="${context}/resources/img/error/err500.jpg" alt="500에러 발생" />
  	</div>
 </body>
 </html>

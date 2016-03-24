@@ -1,6 +1,7 @@
 package com.movie.web.admin;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.movie.web.grade.GradeBean;
 import com.movie.web.grade.GradeMemberBean;
@@ -14,8 +15,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public ArrayList<GradeMemberBean> getMemberList() {
-		ArrayList<GradeMemberBean> list = new ArrayList<GradeMemberBean>();
+	public List<GradeMemberBean> getMemberList() {
 		
 		return dao.view();
 	}

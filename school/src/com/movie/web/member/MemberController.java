@@ -22,30 +22,15 @@ public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	MemberService service = MemberServiceImpl.getInstance();
 
-	// 페이지 이동시에는 doGet
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		String[] str = Seperator.doSomething(request);
 		Command command = new Command();
 		MemberBean member = new MemberBean();
-		int result;
 
 		switch (str[1]) {
 
-		case "login":
-			if (service.isMember(request.getParameter("id"))) {
-				
-				if (service.login(request.getParameter("id"), request.getParameter("password")) == null) {
-					command = CommandFactory.createCommand(str[0], "login_form");
-				} else {
-					request.setAttribute("member", service.login(request.getParameter("id"), request.getParameter("password")));
-					command = CommandFactory.createCommand(str[0], "detail");
-				}
-			} else {
-				command = CommandFactory.createCommand(str[0], "login_form");
-			}
-			break;
 		case "update_form":
 			request.setAttribute("member", service.detail(request.getParameter("id")));
 			command = CommandFactory.createCommand(str[0], str[1]);
@@ -60,23 +45,6 @@ public class MemberController extends HttpServlet {
 			}
 			break;
 
-		default:
-			command = CommandFactory.createCommand(str[0], str[1]);
-			break;
-		}
-
-		DispatcherServlet.dispatcher(request, response, command);
-
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		String[] str = Seperator.doSomething(request);
-		Command command = new Command();
-		MemberBean member = new MemberBean();
-
-		switch (str[1]) {
 		case "join":
 			member.setId(request.getParameter("id"));
 			member.setName(request.getParameter("name"));
@@ -88,6 +56,21 @@ public class MemberController extends HttpServlet {
 				command = CommandFactory.createCommand(str[0], "login_form");
 			} else {
 				command = CommandFactory.createCommand(str[0], str[1]);
+			}
+			break;
+
+		case "login":
+			if (service.isMember(request.getParameter("id"))) {
+
+				if (service.login(request.getParameter("id"), request.getParameter("password")) == null) {
+					command = CommandFactory.createCommand(str[0], "login_form");
+				} else {
+					request.setAttribute("member",
+							service.login(request.getParameter("id"), request.getParameter("password")));
+					command = CommandFactory.createCommand(str[0], "detail");
+				}
+			} else {
+				command = CommandFactory.createCommand(str[0], "login_form");
 			}
 			break;
 
