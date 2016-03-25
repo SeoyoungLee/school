@@ -42,6 +42,21 @@
 				<li><a href="${context}/js/closure.do">클로저</a></li>
 				<li><a href="${context}/js/pattern.do">패턴</a></li>
 			</ul></li>
+			
+			<li role="presentation" class="dropdown" style="margin-left: 100px">
+		<a
+			class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+			aria-haspopup="true" aria-expanded="false"> 제이쿼리 <span
+				class="caret"></span>
+		</a>
+			<ul class="dropdown-menu">
+				<li><a href="${context}/jQuery/attr.do">속성</a></li>
+				<li><a href="${context}/jQuery/core.do">코어</a></li>
+				<li><a href="${context}/jQuery/dom.do">돔</a></li>
+				<li><a href="${context}/jQuery/event.do">이벤트</a></li>
+				<li><a href="${context}/jQuery/selector.do">셀렉터</a></li>
+				<li><a href="${context}/jQuery/traversing.do">트래버싱</a></li>
+			</ul></li>
 	</ul>
 
 	</header>

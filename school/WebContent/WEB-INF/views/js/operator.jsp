@@ -13,6 +13,7 @@
 	    	<li class="dropdown active"><a onclick="opr.gugudan()">구구단</a></li>
 	    	<li class="dropdown active"><a onclick="opr.sum1to100()">1-100까지 합</a></li>
 	    	<li class="dropdown active"><a onclick="opr.oddSum()">홀수 짝수의 합</a></li>
+	    	<li class="dropdown active"><a onclick="liveScript()">라이브스크립트 호출</a></li>
 	    	
 	    </ul>
     </div>
@@ -22,6 +23,10 @@
 </div>
 </div>	
 <script type="text/javascript">
+
+function liveScript(){
+	alert('라이브스크립트 시절(객체기반언어가 아닌 시절)은 이렇게 했답니다.');
+}
 var opr = {
 		sysout : function() {
 			var arr = ['사과','배','감','귤'];

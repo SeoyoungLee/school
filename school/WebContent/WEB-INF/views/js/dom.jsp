@@ -77,7 +77,7 @@
 			<span name='aaa'>3번</span>
 			<span>4번</span>
 			<span name='bbb'>5번</span>
-			<span>4번</span>
+			<span>6번</span>
 			</div>
 		</div>
 		</div>

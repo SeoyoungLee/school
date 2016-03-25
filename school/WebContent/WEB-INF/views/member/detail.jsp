@@ -5,7 +5,7 @@
 			<h2 class="text-center">회원상세정보</h2>
 		</div>
 		<div class="joinCenter row">
-			<form action="${context}/member/update_form.do" name="updateForm" class="form-horizontal">
+			<form>
 				<fieldset class="joinField">
 					<div class="form-group">
 					 	<label for="input_id" class="col-sm-4 control-label">아이디</label>
@@ -39,12 +39,9 @@
 						</div>
 					</div>
 					<div class="input_button text-center">
-						
-						
-						<input type="submit" formaction="${context}/grade/my_grade.do" class="btn btn-primary" value="내 성적 보기" />
-						<input type="submit" id="updateButton" class="btn btn-primary" value ="수정 폼으로 이동"/>
-						<input type="submit" formaction="${context}/member/delete.do" class="btn btn-primary" value="삭제" />
-						<input type="hidden" id="id" name="id" class="btn btn-primary" value ="${member.id}"/>
+						<img src="${context}/resources/img/member/update.png" id="updateButton" />
+						<img src="${context}/resources/img/member/delete.jpg" id="deleteButton" />
+						<img src="${context}/resources/img/member/myscore.png" id="myScoreButton" />
 						
 					</div>
 						
@@ -52,3 +49,20 @@
 			</form>
 			</div>
 		</div>
+		<script>
+		$(function() {
+			$('form').addClass('form-horizontal');
+			$('#updateButton').css('width','160px').css('height','50px')
+			$('#deleteButton').css('width','160px').css('height','50px')
+			$('#myScoreButton').css('width','160px').css('height','50px')
+			$('#updateButton').click(function() {
+				location.href='${context}/member/update_form.do?id=${member.id}';
+			})
+			$('#deleteButton').click(function() {
+				location.href='${context}/member/delete.do?id=${member.id}';
+			})
+			$('#myScoreButton').click(function() {
+				location.href='${context}/grade/my_grade.do?id=${member.id}';
+			})
+		});
+		</script>

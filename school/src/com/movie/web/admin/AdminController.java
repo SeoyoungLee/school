@@ -17,6 +17,7 @@ import com.movie.web.member.MemberBean;
 @WebServlet("/admin/admin_form.do")
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	AdminService service = AdminServiceImpl.getInstance();
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -27,7 +28,9 @@ public class AdminController extends HttpServlet {
 
 		switch (str[1]) {
 		
-		case "admin_form" : command = CommandFactory.createCommand(str[0], str[1]); break;
+		case "admin_form" : 
+			request.setAttribute("student", service.getMemberList());
+			command = CommandFactory.createCommand(str[0], str[1]); break;
 		
 		default:
 			command = CommandFactory.createCommand(str[0], str[1]);
