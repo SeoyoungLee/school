@@ -11,4 +11,5 @@ public interface AdminDAO {
 	
 	public int input(GradeBean bean);
 
+	public AdminBean selectAdmin(String id, String ps);
 }

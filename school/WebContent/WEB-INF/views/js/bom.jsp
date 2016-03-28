@@ -9,7 +9,7 @@
 		<li>[1] 대화창
 			<ul>
 				<li><a href="#" onclick="javascript : win.alert()">경고창</a></li>
-				<li><a href="#" onclick="javascript :  win.confirm()">확인창</a></li>
+				<li><a href="#" onclick="javascript : win.confirm()">확인창</a></li>
 				<li><a href="#" onclick="javascript : win.prompt()">입력창</a></li>
 
 			</ul>

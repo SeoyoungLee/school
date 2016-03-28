@@ -11,4 +11,5 @@ public interface AdminService {
 
 	public int addScore(GradeBean bean);
 
+	public AdminBean getAdmin(String id, String ps);
 }
