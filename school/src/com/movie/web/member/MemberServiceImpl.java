@@ -1,6 +1,7 @@
 package com.movie.web.member;
 
 import java.util.HashMap;
+import java.util.List;
 
 import oracle.net.aso.f;
 
@@ -71,6 +72,12 @@ public class MemberServiceImpl implements MemberService {
 	public boolean isMember(String id) {
 		return dao.isMember(id);
 		
+	}
+
+	@Override
+	public List<MemberBean> getList() {
+		
+		return dao.selectList();
 	}
 
 }

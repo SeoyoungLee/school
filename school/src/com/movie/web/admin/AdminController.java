@@ -15,11 +15,11 @@ import com.movie.web.global.Seperator;
 import com.movie.web.grade.GradeMemberBean;
 import com.movie.web.member.MemberBean;
 
-@WebServlet({"/admin/admin_form.do" , "/admin/admin_login_form.do"})
+@WebServlet({ "/admin/admin_form.do", "/admin/admin_login_form.do" })
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	AdminService service = AdminServiceImpl.getInstance();
-	
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -27,24 +27,23 @@ public class AdminController extends HttpServlet {
 		AdminBean admin = new AdminBean();
 		Command command = new Command();
 		HttpSession session = request.getSession();
-		
+
 		switch (str[1]) {
-		
-		case "admin_form" : 
-			
-			if(service.getAdmin(request.getParameter("id"), request.getParameter("password"))==null){
-				command = CommandFactory.createCommand(str[0],"admin_login_form");
-			}else{
+
+		case "admin_login_form":
+			command = CommandFactory.createCommand(str[0], str[1]);
+			break;
+
+		case "admin_form":
+			admin = service.getAdmin(request.getParameter("id"), request.getParameter("password"));
+			if (admin == null) {
+				command = CommandFactory.createCommand(str[0], "admin_login_form");
+			} else {
 				session.setAttribute("admin", admin);
 				command = CommandFactory.createCommand(str[0], "admin_form");
 			}
 			break;
-			
-		case "admin_login_form" :
-			command = CommandFactory.createCommand(str[0],str[1]);
-			
-			
-		break;
+
 		default:
 			command = CommandFactory.createCommand(str[0], str[1]);
 			break;
@@ -52,9 +51,5 @@ public class AdminController extends HttpServlet {
 
 		DispatcherServlet.dispatcher(request, response, command);
 	}
-
-
-
-	
 
 }

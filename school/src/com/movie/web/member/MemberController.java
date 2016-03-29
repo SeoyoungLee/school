@@ -1,8 +1,9 @@
 package com.movie.web.member;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,10 +16,8 @@ import com.movie.web.global.CommandFactory;
 import com.movie.web.global.DispatcherServlet;
 import com.movie.web.global.Seperator;
 
-import javafx.scene.control.Separator;
-
 @WebServlet({ "/member/login_form.do", "/member/join_form.do", "/member/join.do", "/member/login.do",
-		"/member/update_form.do", "/member/update.do", "/member/delete.do" }) // web.xml
+		"/member/update_form.do", "/member/update.do", "/member/delete.do", "/member/list.do" }) // web.xml
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	MemberService service = MemberServiceImpl.getInstance();
@@ -30,6 +29,7 @@ public class MemberController extends HttpServlet {
 		Command command = new Command();
 		MemberBean member = new MemberBean();
 		HttpSession session = request.getSession();
+		List<MemberBean> list = new ArrayList<MemberBean>();
 
 		switch (str[1]) {
 
@@ -61,8 +61,8 @@ public class MemberController extends HttpServlet {
 
 		case "login":
 			if (service.isMember(request.getParameter("id"))) {
-
-				if (service.login(request.getParameter("id"), request.getParameter("password")) == null) {
+				member = service.login(request.getParameter("id"), request.getParameter("password"));
+				if (member == null) {
 					command = CommandFactory.createCommand(str[0], "login_form");
 				} else {
 					session.setAttribute("user", member);//bom
@@ -91,6 +91,11 @@ public class MemberController extends HttpServlet {
 		case "logout" : 
 			session.invalidate();
 			command = CommandFactory.createCommand(str[0], "login_form");
+			break;
+			
+		case "list" :
+			request.setAttribute("list", service.getList());
+			command = CommandFactory.createCommand(str[0], "member_list");
 			break;
 
 		default:

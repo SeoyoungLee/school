@@ -11,43 +11,55 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.movie.web.global.Command;
 import com.movie.web.global.CommandFactory;
+import com.movie.web.global.DispatcherServlet;
+import com.movie.web.global.Seperator;
+import com.movie.web.member.MemberBean;
+import com.movie.web.member.MemberService;
+import com.movie.web.member.MemberServiceImpl;
 
-@WebServlet("/grade/my_grade.do")
+@WebServlet({ "/grade/my_grade.do", "/grade/add_form.do", "/grade/add.do" })
 public class GradeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	GradeService service = GradeServiceImpl.getInstance();
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		Command command = new Command();
+		MemberBean member = new MemberBean();
+		GradeBean grade = new GradeBean();
+		MemberService memberService = new MemberServiceImpl();
 		
-		GradeMemberBean grade = new GradeMemberBean();
-		
-		String path = request.getServletPath();
-		String temp = path.split("/")[2];
-		
-		String directory= path.split("/")[1];
-		String action=temp.split("\\.")[0];
-		command = CommandFactory.createCommand(directory, action);
-		
-		switch (action) {
+		String[] str = Seperator.doSomething(request);
+
+		switch (str[1]) {
 		case "my_grade":
-			request.setAttribute("grade",service.getGradeById(request.getParameter("id")));
-			command = CommandFactory.createCommand(directory, action);
+			request.setAttribute("grade", service.getGradeById(request.getParameter("id")));
+			command = CommandFactory.createCommand(str[0], str[1]);
 			break;
-					
+
+		case "add_form":
+			request.setAttribute("member", memberService.detail(request.getParameter("id")));
+			command = CommandFactory.createCommand(str[0], str[1]);
+			break;
+
+		case "add":
+			grade.setId(request.getParameter("id"));
+			grade.setJava(Integer.parseInt(request.getParameter("java")));
+			grade.setJsp(Integer.parseInt(request.getParameter("jsp")));
+			grade.setSql(Integer.parseInt(request.getParameter("sql")));
+			grade.setSpring(Integer.parseInt(request.getParameter("spring")));
+			if(service.input(grade)==1){
+				command = CommandFactory.createCommand("admin", "admin_form");
+			}else{
+				command = CommandFactory.createCommand(str[0], str[1]);
+			}
+			break;
+
 		default:
-			command = CommandFactory.createCommand(directory, action);
+			command = CommandFactory.createCommand(str[0], str[1]);
 			break;
 		}
-		RequestDispatcher dis = request.getRequestDispatcher(command.getView());
-		dis.forward(request, response);
-
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		DispatcherServlet.dispatcher(request, response, command);
 
 	}
 }
-
-

@@ -5,7 +5,7 @@ import java.util.Map;
 
 public interface GradeDAO {
 	// C : 성적표 등록
-	public void insert(GradeBean grade); // 추상 메소드
+	public int insert(GradeBean grade); // 추상 메소드
 
 	// R : 성적표 리스트 출력
 	public ArrayList<GradeMemberBean> selectAll();

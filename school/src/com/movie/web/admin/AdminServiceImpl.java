@@ -7,10 +7,10 @@ import com.movie.web.grade.GradeBean;
 import com.movie.web.grade.GradeMemberBean;
 
 public class AdminServiceImpl implements AdminService {
-	private static AdminServiceImpl instance = new AdminServiceImpl();
+	private static AdminService instance = new AdminServiceImpl();
 	AdminDAO dao = AdminDAOImpl.getInstance();
 
-	public static AdminServiceImpl getInstance() {
+	public static AdminService getInstance() {
 		return instance;
 	}
 

@@ -14,7 +14,7 @@ import java.util.Map;
 public interface GradeService {
 	
 	//C : 성적표 등록 
-	public void input(GradeBean grade); //추상 메소드
+	public int input(GradeBean grade); //추상 메소드
 	
 	//R : 성적표 리스트 출력
 	public ArrayList<GradeMemberBean> getList();
@@ -36,5 +36,6 @@ public interface GradeService {
 	
 	//D :성적표 삭제
 	public String delete(int hak);
+	
 
 }

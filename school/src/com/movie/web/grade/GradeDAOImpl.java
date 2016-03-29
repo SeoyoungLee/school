@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,8 +30,23 @@ public class GradeDAOImpl implements GradeDAO {
 	}
 
 	@Override
-	public void insert(GradeBean grade) {
-		// TODO Auto-generated method stub
+	public int insert(GradeBean grade) {
+		int msg = 0;
+		try {
+			pstmt = conn.prepareStatement("INSERT INTO Grade(score_seq, id, java, sql, jsp, spring) VALUES(score_seq.NEXTVAL,?, ?,?,?,?)");
+			pstmt.setString(1, grade.getId());
+			pstmt.setInt(2, grade.getJava() );
+			pstmt.setInt(3,  grade.getSql());
+			pstmt.setInt(4, grade.getJsp());
+			pstmt.setInt(5, grade.getSpring());
+
+			msg = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("insert()에서 에러 발생");
+			e.printStackTrace();
+		}
+		System.out.println("insert 성공여부 : " + msg);
+		return msg;
 	}
 
 	@Override

@@ -20,14 +20,9 @@ public class GradeServiceImpl implements GradeService {
 
 	// 멤버 메스드 에어리어
 	@Override
-	public void input(GradeBean grade) {
+	public int input(GradeBean grade) {
 		// C : 성적표 등록
-		gradeList.add(new GradeBean(2, "김유신", 100, 100, 100, 100));
-		gradeList.add(new GradeBean(3, "김김김", 90, 90, 90, 90));
-		gradeList.add(new GradeBean(4, "유유유", 80, 80, 80, 80));
-		gradeList.add(new GradeBean(5, "신신신", 70, 70, 70, 70));
-		gradeList.add(new GradeBean(6, "신유김", 60, 60, 60, 60));
-		gradeList.add(grade);
+		return dao.insert(grade);
 
 	}
 

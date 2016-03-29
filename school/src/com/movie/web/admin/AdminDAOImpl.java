@@ -27,7 +27,6 @@ public class AdminDAOImpl implements AdminDAO{
 	
 	public AdminDAOImpl() {
 		conn = DatabaseFactory.getDatabase(Vendor.ORACLE, Constants.ID, Constants.PASSWORD).getConnection();
-
 	}
 	
 	@Override
